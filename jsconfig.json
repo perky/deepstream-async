@@ -1,0 +1,10 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "experimentalDecorators": true,
+    "experimentalAsyncFunctions": true
+  },
+  "files": [
+        "src/app.js"
+    ]
+}
