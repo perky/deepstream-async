@@ -47,11 +47,7 @@ class DsRpcAsync {
   }
 
   provide( id ) {
-    return new Promise((resolve, reject) => {
-      this.client.rpc.provide(id, (data, response) => {
-        resolve(data, response);
-      });
-    });
+    return this.client.rpc.provide(id, callback);
   }
 
   unprovide( id ) {
