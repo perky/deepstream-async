@@ -121,6 +121,20 @@ class DsRecordAsync {
       return this._getRecord(rid);
     }
   }
+
+  getRecordCursor( rid ) {
+    return this.client.record.getRecord(rid);
+  }
+
+  setRecordField( rid, field, value ) {
+    let record = this.client.record.getRecord(rid);
+    record.set(field, value).discard();
+  }
+
+  setRecordData( rid, data ) {
+    let record = this.client.record.getRecord(rid);
+    record.set(data).discard();
+  }
   
   /**
    * Promise version of record.snapshot
@@ -144,6 +158,22 @@ class DsRecordAsync {
    */
   getList( rid ) {
     return this._getList(rid);
+  }
+
+  getListCursor( rid ) {
+    return this.client.record.getList(rid);
+  }
+
+  addEntryToList( rid, entry ) {
+    let list = this.client.record.getList(rid);
+    list.addEntry(entry).discard();
+  }
+
+  removeEntryFromList( rid, entry ) {
+    this.client.record.getList(rid).whenReady(list => {
+      list.removeEntry(entry);
+      list.discard();
+    });
   }
 
   /**
